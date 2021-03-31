@@ -20,18 +20,6 @@ class HomeController extends Controller
     {
         return $request->run();
     }
-    public function get_freelancers(FreelancerRequest $request): JsonResponse
-    {
-        return $request->run();
-    }
-    public function get_freelancer(ShowFreelancerRequest $request): JsonResponse
-    {
-        return $request->run();
-    }
-    public function get_reviews(ReviewRequest $request): JsonResponse
-    {
-        return $request->run();
-    }
     public function faqs(FaqRequest $request): JsonResponse
     {
         return $request->run();

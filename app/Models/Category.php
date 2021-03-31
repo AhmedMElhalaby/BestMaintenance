@@ -20,6 +20,9 @@ class Category extends Model
     protected $table = 'categories';
     protected $fillable = ['name','name_ar','description','description_ar','image','is_active'];
 
+    public function issues(){
+        return $this->hasMany(Issue::class);
+    }
     /**
      * @return int
      */

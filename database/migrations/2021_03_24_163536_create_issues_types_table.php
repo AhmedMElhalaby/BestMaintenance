@@ -18,6 +18,8 @@ class CreateIssuesTypesTable extends Migration
             $table->foreignId('issue_id');
             $table->string('name');
             $table->string('name_ar');
+            $table->double('price')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

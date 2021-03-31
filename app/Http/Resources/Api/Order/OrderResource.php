@@ -3,10 +3,11 @@
 namespace App\Http\Resources\Api\Order;
 
 use App\Helpers\Functions;
-use App\Http\Resources\Api\Product\ProductResource;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Api\Home\FreelancerResource;
+use App\Http\Resources\Api\Home\TechnicalResource;
+use App\Http\Resources\Api\Home\UserResource;
+use App\Http\Resources\Api\Home\CategoryResource;
 
 class OrderResource extends JsonResource
 {
@@ -15,14 +16,12 @@ class OrderResource extends JsonResource
         $Objects = array();
         $Objects['id'] = $this->getId();
         $Objects['user_id'] = $this->getUserId();
-        $Objects['User'] = new FreelancerResource($this->user);
-        $Objects['product_id'] = $this->getProductId();
-        $Objects['Product'] = new ProductResource($this->product);
-        $Objects['freelancer_id'] = $this->getFreelancerId();
-        $Objects['Freelancer'] = new FreelancerResource($this->freelancer);
-        $Objects['quantity'] = $this->getQuantity();
-        $Objects['price'] = $this->getPrice();
-        $Objects['total'] = $this->getTotal();
+        $Objects['User'] = new UserResource($this->user);
+        $Objects['category_id'] = $this->getCategoryId();
+        $Objects['Category'] = new CategoryResource($this->category);
+        $Objects['technical_id'] = $this->getTechnicalId();
+        $Objects['Technical'] = new TechnicalResource($this->technical);
+        $Objects['amount'] = $this->getAmount();
         $UserBalance = Functions::UserBalance($this->getUserId());
         if ($UserBalance >= $this->getTotal()) {
             $balance = 0;
@@ -31,8 +30,8 @@ class OrderResource extends JsonResource
         }
         $Objects['balance'] = $balance;
         $Objects['order_date'] = Carbon::parse($this->created_at);
-        $Objects['delivered_date'] = $this->getDeliveredDate();
-        $Objects['delivered_time'] = $this->getDeliveredTime();
+        $Objects['order_date'] = $this->getOrderDate();
+        $Objects['order_time'] = $this->getOrderTime();
         $Objects['reject_reason'] = $this->getRejectReason();
         $Objects['cancel_reason'] = $this->getCancelReason();
         $Objects['rate'] = $this->reviews()->avg('rate')??'0';

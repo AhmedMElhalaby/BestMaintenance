@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Helpers\Functions;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property integer id
@@ -13,11 +12,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property mixed price
  * @property mixed image
  * @property mixed description
+ * @property mixed description_ar
+ * @property mixed is_active
  */
 class Subscription extends Model
 {
     protected $table = 'subscriptions';
-    protected $fillable = ['name','name_ar','price','image','description'];
+    protected $fillable = ['name','name_ar','price','image','description','description_ar','is_active'];
 
     /**
      * @return int
@@ -113,6 +114,38 @@ class Subscription extends Model
     public function setDescription($description): void
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescriptionAr()
+    {
+        return $this->description_ar;
+    }
+
+    /**
+     * @param mixed $description_ar
+     */
+    public function setDescriptionAr($description_ar): void
+    {
+        $this->description_ar = $description_ar;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * @param mixed $is_active
+     */
+    public function setIsActive($is_active): void
+    {
+        $this->is_active = $is_active;
     }
 
 }

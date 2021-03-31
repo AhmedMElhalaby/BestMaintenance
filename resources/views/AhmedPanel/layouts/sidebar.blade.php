@@ -40,7 +40,7 @@
     </div>
 </li>
 @endif
-@if (auth('admin')->user()->can('Settings')|| auth('admin')->user()->can('Faqs') || auth('admin')->user()->can('Categories')||auth('admin')->user()->can('SubCategories')|| auth('admin')->user()->can('Countries')|| auth('admin')->user()->can('Cities'))
+@if (auth('admin')->user()->can('Settings')|| auth('admin')->user()->can('Faqs') || auth('admin')->user()->can('Categories')||auth('admin')->user()->can('Subscriptions')|| auth('admin')->user()->can('Countries')|| auth('admin')->user()->can('Cities'))
 <li class="nav-item ">
     <a class="nav-link collapsed" data-toggle="collapse" href="#app_data" aria-expanded="false">
         <i class="material-icons">keyboard_arrow_down</i>
@@ -72,11 +72,11 @@
                     </a>
                 </li>
             @endif
-            @if (auth('admin')->user()->can('SubCategories'))
-                <li class="nav-item @if(strpos(url()->current() , url('app_data/sub_categories'))===0) active @endif">
-                    <a href="{{url('app_data/sub_categories')}}" class="nav-link">
-                        <i class="material-icons">category</i>
-                        <p>{{__('admin.sidebar.sub_categories')}}</p>
+            @if (auth('admin')->user()->can('Subscriptions'))
+                <li class="nav-item @if(strpos(url()->current() , url('app_data/subscriptions'))===0) active @endif">
+                    <a href="{{url('app_data/subscriptions')}}" class="nav-link">
+                        <i class="material-icons">card_membership</i>
+                        <p>{{__('admin.sidebar.subscriptions')}}</p>
                     </a>
                 </li>
             @endif
@@ -93,6 +93,22 @@
                     <a href="{{url('app_data/cities')}}" class="nav-link">
                         <i class="material-icons">location_city</i>
                         <p>{{__('admin.sidebar.cities')}}</p>
+                    </a>
+                </li>
+            @endif
+            @if (auth('admin')->user()->can('Issues'))
+                <li class="nav-item @if(strpos(url()->current() , url('app_data/issues'))===0) active @endif">
+                    <a href="{{url('app_data/issues')}}" class="nav-link">
+                        <i class="material-icons">bug_report</i>
+                        <p>{{__('admin.sidebar.issues')}}</p>
+                    </a>
+                </li>
+            @endif
+            @if (auth('admin')->user()->can('IssuesTypes'))
+                <li class="nav-item @if(strpos(url()->current() , url('app_data/issues_types'))===0) active @endif">
+                    <a href="{{url('app_data/issues_types')}}" class="nav-link">
+                        <i class="material-icons">pest_control</i>
+                        <p>{{__('admin.sidebar.issues_types')}}</p>
                     </a>
                 </li>
             @endif
@@ -128,7 +144,7 @@
     </div>
 </li>
 @endif
-@if (auth('admin')->user()->can('Customers') || auth('admin')->user()->can('Providers') || auth('admin')->user()->can('Tickets'))
+@if (auth('admin')->user()->can('Customers') || auth('admin')->user()->can('Technicals') || auth('admin')->user()->can('Tickets')|| auth('admin')->user()->can('CustomerSubscriptions'))
     <li class="nav-item ">
         <a class="nav-link collapsed" data-toggle="collapse" href="#user_managements" aria-expanded="false">
             <i class="material-icons">keyboard_arrow_down</i>
@@ -149,6 +165,14 @@
                         <a href="{{url('user_managements/technicals')}}" class="nav-link">
                             <i class="material-icons">people_outline</i>
                             <p>{{__('admin.sidebar.technicals')}}</p>
+                        </a>
+                    </li>
+                @endif
+                @if (auth('admin')->user()->can('UserSubscriptions'))
+                    <li class="nav-item @if(strpos(url()->current() , url('user_managements/users_subscriptions'))===0) active @endif">
+                        <a href="{{url('user_managements/users_subscriptions')}}" class="nav-link">
+                            <i class="material-icons">recent_actors</i>
+                            <p>{{__('admin.sidebar.users_subscriptions')}}</p>
                         </a>
                     </li>
                 @endif

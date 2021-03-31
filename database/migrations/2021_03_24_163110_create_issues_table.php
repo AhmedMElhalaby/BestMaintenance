@@ -18,6 +18,7 @@ class CreateIssuesTable extends Migration
             $table->foreignId('category_id');
             $table->string('name');
             $table->string('name_ar');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

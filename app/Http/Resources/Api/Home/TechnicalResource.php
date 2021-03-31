@@ -2,11 +2,9 @@
 
 namespace App\Http\Resources\Api\Home;
 
-use App\Models\Category;
-use App\Models\FreelancerCategory;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class TechnicalResource extends JsonResource
 {
     public function toArray($request): array
     {

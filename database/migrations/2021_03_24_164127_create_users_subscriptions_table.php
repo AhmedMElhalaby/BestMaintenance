@@ -17,8 +17,8 @@ class CreateUsersSubscriptionsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('subscription_id');
-            $table->date('expire_date');
-            $table->tinyInteger('status');
+            $table->date('expire_date')->nullable();
+            $table->tinyInteger('status')->default(\App\Helpers\Constant::USER_SUBSCRIPTION['Pending']);
             $table->timestamps();
         });
     }

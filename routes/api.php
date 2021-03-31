@@ -54,15 +54,6 @@ Route::group([
         Route::get('check_payment', 'TransactionController@check_payment');
         Route::post('request_refund', 'TransactionController@request_refund');
     });
-    Route::group([
-        'prefix' => 'chats',
-    ], function() {
-        Route::get('rooms','ChatController@rooms');
-        Route::get('rooms/messages','ChatController@messages');
-        Route::get('rooms/read','ChatController@read_messages');
-        Route::post('rooms/create','ChatController@create_room');
-        Route::post('rooms/messages/create','ChatController@create_message');
-    });
 
     Route::group([
         'prefix' => 'orders'
@@ -73,31 +64,8 @@ Route::group([
         Route::post('update', 'OrderController@update');
         Route::post('review', 'OrderController@review');
     });
-    Route::group([
-        'prefix' => 'portfolios',
-    ], function (){
-        Route::get('/','PortfolioController@index');
-        Route::get('show','PortfolioController@show');
-        Route::post('store','PortfolioController@store');
-        Route::post('update', 'PortfolioController@update');
-        Route::post('destroy', 'PortfolioController@destroy');
-    });
 });
 
-Route::group([
-    'prefix' => 'products',
-], function() {
-    Route::get('/','ProductController@index');
-    Route::get('show','ProductController@show');
-    Route::group([
-        'middleware' => 'auth:api'
-    ], function() {
-        Route::post('store','ProductController@store');
-        Route::post('update','ProductController@update');
-        Route::post('destroy','ProductController@destroy');
-        Route::post('media/destroy','ProductController@destroy_media');
-    });
-});
 Route::group([
     'prefix' => 'home',
 ], function() {
@@ -105,9 +73,6 @@ Route::group([
     Route::get('faqs','HomeController@faqs');
     Route::get('advertisements','HomeController@advertisements');
     Route::get('categories','HomeController@categories');
-    Route::get('get_freelancers','HomeController@get_freelancers');
-    Route::get('get_freelancer','HomeController@get_freelancer');
-    Route::get('get_reviews','HomeController@get_reviews');
 });
 
 Route::group([

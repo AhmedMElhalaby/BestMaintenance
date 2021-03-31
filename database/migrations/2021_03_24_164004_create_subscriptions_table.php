@@ -17,9 +17,11 @@ class CreateSubscriptionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('name_ar');
+            $table->text('description');
+            $table->text('description_ar');
             $table->string('price');
             $table->string('image');
-            $table->text('description');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

@@ -10,15 +10,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property mixed category_id
  * @property mixed name
  * @property mixed name_ar
+ * @property mixed is_active
  */
 class Issue extends Model
 {
     protected $table = 'issues';
-    protected $fillable = ['category_id','name','name_ar'];
+    protected $fillable = ['category_id','name','name_ar','is_active'];
 
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+    public function issue_types(){
+        return $this->hasMany(IssueType::class);
     }
     /**
      * @return int
@@ -82,6 +86,22 @@ class Issue extends Model
     public function setNameAr($name_ar): void
     {
         $this->name_ar = $name_ar;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * @param mixed $is_active
+     */
+    public function setIsActive($is_active): void
+    {
+        $this->is_active = $is_active;
     }
 
 }

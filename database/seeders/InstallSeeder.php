@@ -38,13 +38,13 @@ class InstallSeeder extends Seeder
             'Settings',
             'Faq',
             'Categories',
-            'SubCategories',
+            'Subscriptions',
             'Countries',
             'Cities',
             'Advertisements',
             'Orders',
             'Customers',
-            'Providers',
+            'Technicals',
             'Tickets',
         ];
         $Settings = [

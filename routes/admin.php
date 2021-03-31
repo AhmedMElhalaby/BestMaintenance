@@ -140,6 +140,18 @@ Route::group([
             Route::get('/option/export','CategoryController@export');
         });
         Route::group([
+            'prefix'=>'subscriptions'
+        ],function () {
+            Route::get('/','SubscriptionController@index');
+            Route::get('/create','SubscriptionController@create');
+            Route::post('/','SubscriptionController@store');
+            Route::get('/{subscription}','SubscriptionController@show');
+            Route::get('/{subscription}/edit','SubscriptionController@edit');
+            Route::put('/{subscription}','SubscriptionController@update');
+            Route::delete('/{subscription}','SubscriptionController@destroy');
+            Route::get('/option/export','SubscriptionController@export');
+        });
+        Route::group([
             'prefix'=>'sub_categories'
         ],function () {
             Route::get('/','SubCategoryController@index');
@@ -174,6 +186,30 @@ Route::group([
             Route::put('/{city}','CityController@update');
             Route::delete('/{city}','CityController@destroy');
             Route::get('/option/export','CityController@export');
+        });
+        Route::group([
+            'prefix'=>'issues'
+        ],function () {
+            Route::get('/','IssueController@index');
+            Route::get('/create','IssueController@create');
+            Route::post('/','IssueController@store');
+            Route::get('/{issue}','IssueController@show');
+            Route::get('/{issue}/edit','IssueController@edit');
+            Route::put('/{issue}','IssueController@update');
+            Route::delete('/{issue}','IssueController@destroy');
+            Route::get('/option/export','IssueController@export');
+        });
+        Route::group([
+            'prefix'=>'issues_types'
+        ],function () {
+            Route::get('/','IssueTypeController@index');
+            Route::get('/create','IssueTypeController@create');
+            Route::post('/','IssueTypeController@store');
+            Route::get('/{issue_type}','IssueTypeController@show');
+            Route::get('/{issue_type}/edit','IssueTypeController@edit');
+            Route::put('/{issue_type}','IssueTypeController@update');
+            Route::delete('/{issue_type}','IssueTypeController@destroy');
+            Route::get('/option/export','IssueTypeController@export');
         });
     });
     /*
@@ -244,6 +280,13 @@ Route::group([
             Route::get('/option/export','TechnicalController@export');
             Route::get('/{id}/activation','TechnicalController@activation');
             Route::get('/{provider}/active_mobile_email','TechnicalController@active_mobile_email');
+        });
+        Route::group([
+            'prefix'=>'users_subscriptions'
+        ],function () {
+            Route::get('/','UserSubscriptionController@index');
+            Route::get('/{user_subscription}/approve','UserSubscriptionController@approve');
+            Route::get('/{user_subscription}/reject','UserSubscriptionController@reject');
         });
         Route::group([
             'prefix'=>'tickets'
