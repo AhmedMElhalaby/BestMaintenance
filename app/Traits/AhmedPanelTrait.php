@@ -435,7 +435,7 @@ trait AhmedPanelTrait
                 $text .= '|email|max:255';
 
             if ($field['type'] == 'password')
-                $text .= '|max:255' . ($field['confirmation']) ? '|confirmed' : '';
+                $text .= '|max:255' . (isset($field['confirmation'])&&$field['confirmation']) ? '|confirmed' : '';
 
             if (isset($field['is_unique'])&&$field['is_unique']){
                 if($update)
