@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Controller;
 use App\Http\Requests\Admin\UserManagement\User\ActiveEmailMobileRequest;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Country;
 use App\Models\User;
 use App\Traits\AhmedPanelTrait;
 
@@ -81,11 +82,11 @@ class TechnicalController extends Controller
                 'name'=>'country_id',
                 'type'=>'custom_relation',
                 'relation'=>[
-                    'data'=> Category::all(),
+                    'data'=> Country::all(),
                     'custom'=>function($Object){
                         return ($Object)?$Object->getName():'-';
                     },
-                    'entity'=>'category'
+                    'entity'=>'country'
                 ],
                 'is_required'=>true,
             ],
