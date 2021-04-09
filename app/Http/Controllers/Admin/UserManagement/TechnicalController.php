@@ -111,6 +111,7 @@ class TechnicalController extends Controller
                 'name'=>'password',
                 'type'=>'password',
                 'is_required'=>true,
+                'editable'=>false,
                 'confirmation'=>true
             ],
             'is_active'=> [
