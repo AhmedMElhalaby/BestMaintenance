@@ -21,7 +21,7 @@ class InstallRequest extends ApiRequest
     {
         $data = [];
         $data['Settings'] = Setting::pluck((app()->getLocale() =='en')?'value':'value_ar','key')->toArray();
-        $data['Categories'] = CategoryResource::collection(Category::where('is_active',true)->whereNull('parent_id')->get());
+        $data['Categories'] = CategoryResource::collection(Category::where('is_active',true)->get());
         $data['Countries'] = CountryResource::collection(Country::where('is_active',true)->get());
         $data['Issues'] = IssueResource::collection(Issue::where('is_active',true)->get());
         $data['Advertisements'] = AdvertisementResource::collection(Advertisement::where('is_active',true)->get());

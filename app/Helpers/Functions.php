@@ -4,17 +4,11 @@
 namespace App\Helpers;
 
 
-use App\Events\CreateMessageEvent;
-use App\Events\SendGlobalNotificationEvent;
-use App\Events\SendNotificationEvent;
-use App\Http\Resources\Api\General\NotificationResource;
 use App\Models\Notification;
-use App\Models\Order;
 use App\Models\OrderStatus;
 use App\Models\PasswordReset;
 use App\Models\Transaction;
 use App\Models\VerifyAccounts;
-use App\Notifications\PasswordReset as PasswordResetNotification;
 use App\Notifications\VerifyAccount;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\JsonResponse;
@@ -79,7 +73,6 @@ class Functions
             "ref_id" =>$ref_id,
             "type" =>$type
         );
-        SendNotificationEvent::dispatch($pusher_data,$user->id);
         return true;
     }
     public static function SendNotifications($users,$title,$msg,$ref_id = null,$type= 0,$store = true,$replace =[]): bool
@@ -139,21 +132,9 @@ class Functions
             "ref_id" =>$ref_id,
             "type" =>$type
         );
-        SendGlobalNotificationEvent::dispatch($pusher_data);
         return true;
     }
     public static function SendSms($msg,$to){
-        $ch = curl_init();
-        $user = 'FHOTAIBI';
-        $password = 'q1w2e3r4';
-        $sender = 'Passion';
-        $text = urlencode($msg);
-        $encoding = 'UTF8';
-        // auth call
-        $url = "https://apps.gateway.sa/vendorsms/pushsms.aspx?user=${user}&password=${password}&msisdn=${to}&sid=${sender}&msg=${text}&fl=0";
-        $ret  = json_decode(file_get_contents($url), true);
-        $response = curl_exec($ch);
-        curl_close($ch);
     }
     public static function SendVerification($user,$type = null): JsonResponse
     {
