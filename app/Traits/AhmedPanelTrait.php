@@ -360,6 +360,12 @@ trait AhmedPanelTrait
      */
     public static function Fields($Field, $value,$lang){
         switch ($Field['type']){
+            case 'date':
+                return view('AhmedPanel.base.fields.date',compact('Field','value','lang'));
+                break;
+            case 'time':
+                return view('AhmedPanel.base.fields.time',compact('Field','value','lang'));
+                break;
             case 'boolean':
                 return view('AhmedPanel.base.fields.boolean',compact('Field','value','lang'));
                 break;

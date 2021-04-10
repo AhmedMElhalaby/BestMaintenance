@@ -19,8 +19,8 @@ class RoleController extends Controller
         $this->setTable('roles');
         $this->setLang('Role');
         $this->setColumns([
-            'name'=> [
-                'name'=>'name',
+            (session('my_locale')=='ar')?'name_ar':'name'=> [
+                'name'=>(session('my_locale')=='ar')?'name_ar':'name',
                 'type'=>'text',
                 'is_searchable'=>true,
                 'order'=>true
@@ -32,29 +32,34 @@ class RoleController extends Controller
                 'type'=>'text',
                 'is_required'=>true
             ],
-            'permissions'=> [
-                'name'=>'permissions',
-                'type'=>'multi_checkbox',
-                'custom'=>[
-                    'ListModel'=>[
-                        'Model'=>(new Permission())->all(),
-                        'name'=>'name',
-                        'id'=>'id',
-                    ],
-                    'RelationModel'=>[
-                        'Model'=>(new RolePermission()),
-                        'ref_id'=>'permission_id',
-                        'id'=>'role_id',
-                    ],
-                    'CheckFunc'=>function ($Object ,$id){
-                        if($Object){
-                            return $Object->hasPermission($id);
-                        }
-                        return false;
-                    }
-                ],
-                'is_required'=>false,
+            'name_ar'=> [
+                'name'=>'name_ar',
+                'type'=>'text',
+                'is_required'=>true
             ],
+//            'permissions'=> [
+//                'name'=>'permissions',
+//                'type'=>'multi_checkbox',
+//                'custom'=>[
+//                    'ListModel'=>[
+//                        'Model'=>(new Permission())->all(),
+//                        'name'=>'name',
+//                        'id'=>'id',
+//                    ],
+//                    'RelationModel'=>[
+//                        'Model'=>(new RolePermission()),
+//                        'ref_id'=>'permission_id',
+//                        'id'=>'role_id',
+//                    ],
+//                    'CheckFunc'=>function ($Object ,$id){
+//                        if($Object){
+//                            return $Object->hasPermission($id);
+//                        }
+//                        return false;
+//                    }
+//                ],
+//                'is_required'=>false,
+//            ],
         ]);
         $this->SetLinks([
             'edit',

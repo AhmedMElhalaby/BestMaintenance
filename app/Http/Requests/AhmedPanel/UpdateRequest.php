@@ -110,15 +110,29 @@ class UpdateRequest extends FormRequest
                     }
                 }
             }
-            if ($this->filled('permissions')) {
-                foreach ($this->permissions as $permission_id) {
-                    $RolePermission = new ModelPermission();
-                    $RolePermission->setModelId($Object->getId());
-                    $RolePermission->setPermissionId($permission_id);
-                    $RolePermission->save();
+        }
+        if($crud->getLang() == 'Admin' || $crud->getLang() == 'Role') {
+            if($this->filled('permissions'))
+            {
+                if ($crud->getLang() == 'Admin'){
+                    foreach ($this->permissions as $permission_id){
+                        $RolePermission = new ModelPermission();
+                        $RolePermission->setModelId($Object->getId());
+                        $RolePermission->setPermissionId($permission_id);
+                        $RolePermission->save();
+                    }
+                }
+                if ($crud->getLang() == 'Role'){
+                    foreach ($this->permissions as $permission_id){
+                        $RolePermission = new RolePermission();
+                        $RolePermission->setRoleId($Object->getId());
+                        $RolePermission->setPermissionId($permission_id);
+                        $RolePermission->save();
+                    }
                 }
             }
         }
+
         return redirect($crud->getRedirect())->with('status', __('admin.messages.saved_successfully'));
     }
 }

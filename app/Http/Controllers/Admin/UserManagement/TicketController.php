@@ -23,7 +23,6 @@ class TicketController extends Controller
     {
         $this->setRedirect('user_managements/tickets');
         $this->setEntity(new Ticket());
-        $this->setCreate(false);
         $this->setViewShow('Admin.UserManagement.Ticket.show');
         $this->setExport(false);
         $this->setTable('tickets');
@@ -37,13 +36,19 @@ class TicketController extends Controller
             ],
             'name'=> [
                 'name'=>'name',
-                'type'=>'text',
+                'type'=>'text-custom',
+                'custom'=>function($Object){
+                    return ($Object->user)?$Object->user->getName():$Object->getName();
+                },
                 'is_searchable'=>true,
                 'order'=>true
             ],
             'email'=> [
                 'name'=>'email',
-                'type'=>'text',
+                'type'=>'text-custom',
+                'custom'=>function($Object){
+                    return ($Object->user)?$Object->user->getEmail():$Object->getEmail();
+                },
                 'is_searchable'=>true,
                 'order'=>true
             ],
@@ -62,6 +67,30 @@ class TicketController extends Controller
                 ],
                 'is_searchable'=>true,
                 'order'=>true
+            ],
+        ]);
+        $this->setFields([
+            'user_id'=> [
+                'name'=>'user_id',
+                'type'=>'custom_relation',
+                'relation'=>[
+                    'data'=> User::where('type',Constant::USER_TYPE['Customer'])->get(),
+                    'custom'=>function($Object){
+                        return ($Object)?$Object->getName():'-';
+                    },
+                    'entity'=>'user'
+                ],
+                'is_required'=>true,
+            ],
+            'title'=>[
+                'name'=>'title',
+                'type'=>'text',
+                'is_required'=>true,
+            ],
+            'message'=>[
+                'name'=>'message',
+                'type'=>'text',
+                'is_required'=>true,
             ],
         ]);
         $this->SetLinks([

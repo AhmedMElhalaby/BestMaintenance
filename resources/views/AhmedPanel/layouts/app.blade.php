@@ -3,8 +3,8 @@
 <html lang="en" data-color="{{ config('app.color') }}">
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('logo.png')}}" />
-    <link rel="icon" type="image/png" href="{{asset('logo.svg')}}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset((app()->getLocale()=='ar')?'logo.png':'logo_en.png')}}" />
+    <link rel="icon" type="image/png" href="{{asset((app()->getLocale()=='ar')?'logo.png':'logo_en.png')}}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -34,7 +34,7 @@
 
     <div class="sidebar" data-color="{{ config('app.color') }}" data-image="{{asset('assets/img/sidebar-1.jpg')}}">
         <div class="logo" style="text-align: center">
-            <img onclick="window.location ='{{url('/')}}'" src="{{asset('logo.png')}}" width="150" height="90" style="cursor: pointer" alt="">
+            <img onclick="window.location ='{{url('/')}}'" src="{{asset((app()->getLocale()=='ar')?'logo.png':'logo_en.png')}}" width="150" height="90" style="cursor: pointer" alt="">
 
         </div>
         <div class="sidebar-wrapper">

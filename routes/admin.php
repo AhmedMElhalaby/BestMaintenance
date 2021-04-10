@@ -57,7 +57,7 @@ Route::group([
         'namespace'=>'AppManagement',
     ],function () {
         Route::group([
-            'prefix'=>'admins'
+            'prefix'=>'employees'
         ],function () {
             Route::get('/','AdminController@index');
             Route::get('/create','AdminController@create');
@@ -238,7 +238,12 @@ Route::group([
             'prefix'=>'orders'
         ],function () {
             Route::get('/','OrderController@index');
+            Route::get('/create','OrderController@create');
+            Route::post('/','OrderController@store');
             Route::get('/{order}','OrderController@show');
+            Route::get('/{order}/edit','OrderController@edit');
+            Route::put('/{order}','OrderController@update');
+            Route::delete('/{order}','OrderController@destroy');
             Route::get('/option/export','OrderController@export');
         });
     });
@@ -292,9 +297,12 @@ Route::group([
             'prefix'=>'tickets'
         ],function () {
             Route::get('/','TicketController@index');
+            Route::get('/create','TicketController@create');
+            Route::post('/','TicketController@store');
             Route::get('/{ticket}','TicketController@show');
             Route::post('/{ticket}/response','TicketController@response');
             Route::get('/{ticket}/close','TicketController@close');
+
         });
     });
 });

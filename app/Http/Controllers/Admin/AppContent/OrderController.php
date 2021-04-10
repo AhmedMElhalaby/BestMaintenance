@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\AppContent;
 use App\Helpers\Constant;
 use App\Http\Controllers\Admin\Controller;
 use App\Models\Category;
+use App\Models\Issue;
+use App\Models\IssueType;
 use App\Models\Order;
 use App\Models\User;
 use App\Traits\AhmedPanelTrait;
@@ -20,7 +22,6 @@ class OrderController extends Controller
         $this->setTable('orders');
         $this->setLang('Order');
         $this->setViewShow('Admin.AppContent.Order.show');
-        $this->setCreate(false);
         $this->setColumns([
             'user_id'=> [
                 'name'=>'user_id',
@@ -81,6 +82,88 @@ class OrderController extends Controller
                 'is_searchable'=>true,
                 'order'=>true
             ]
+        ]);
+        $this->setFields([
+            'user_id'=> [
+                'name'=>'user_id',
+                'type'=>'custom_relation',
+                'relation'=>[
+                    'data'=> User::where('type',Constant::USER_TYPE['Customer'])->get(),
+                    'custom'=>function($Object){
+                        return ($Object)?$Object->getName():'-';
+                    },
+                    'entity'=>'user'
+                ],
+                'is_required'=>true,
+            ],
+            'technical_id'=> [
+                'name'=>'technical_id',
+                'type'=>'custom_relation',
+                'relation'=>[
+                    'data'=> User::where('type',Constant::USER_TYPE['Technical'])->get(),
+                    'custom'=>function($Object){
+                        return ($Object)?$Object->getName():'-';
+                    },
+                    'entity'=>'technical'
+                ],
+                'is_required'=>true,
+            ],
+            'category_id'=> [
+                'name'=>'category_id',
+                'type'=>'custom_relation',
+                'relation'=>[
+                    'data'=> Category::all(),
+                    'custom'=>function($Object){
+                        return ($Object)?session('my_locale') =='ar'?$Object->getNameAr():$Object->getName():'-';
+                    },
+                    'entity'=>'category'
+                ],
+                'is_required'=>true,
+            ],
+            'issue_id'=> [
+                'name'=>'issue_id',
+                'type'=>'custom_relation',
+                'relation'=>[
+                    'data'=> Issue::all(),
+                    'custom'=>function($Object){
+                        return ($Object)?session('my_locale') =='ar'?$Object->getNameAr():$Object->getName():'-';
+                    },
+                    'entity'=>'issue'
+                ],
+                'is_required'=>true,
+            ],
+            'issue_type_id'=> [
+                'name'=>'issue_type_id',
+                'type'=>'custom_relation',
+                'relation'=>[
+                    'data'=> IssueType::all(),
+                    'custom'=>function($Object){
+                        return ($Object)?session('my_locale') =='ar'?$Object->getNameAr():$Object->getName():'-';
+                    },
+                    'entity'=>'issue_type'
+                ],
+                'is_required'=>true,
+            ],
+            'amount'=>[
+                'name'=>'amount',
+                'type'=>'number',
+                'is_required'=>true,
+            ],
+            'order_date'=>[
+                'name'=>'order_date',
+                'type'=>'date',
+                'is_required'=>true,
+            ],
+            'order_time'=>[
+                'name'=>'order_time',
+                'type'=>'time',
+                'is_required'=>true,
+            ],
+            'note'=>[
+                'name'=>'note',
+                'type'=>'textarea',
+                'is_required'=>false,
+            ],
         ]);
         $this->SetLinks([
             'show',

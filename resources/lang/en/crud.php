@@ -5,9 +5,9 @@ use App\Helpers\Constant;
 return [
 
     'Admin'=>[
-        'crud_names' => 'Admins',
-        'crud_name' => 'Admin',
-        'crud_the_name' => 'The Admin',
+        'crud_names' => 'Employees',
+        'crud_name' => 'Employee',
+        'crud_the_name' => 'The Employee',
         'name' => 'Name',
         'email' => 'E-Mail',
         'is_active' => 'Status',
@@ -23,6 +23,9 @@ return [
         'avatar' => 'Avatar',
         'type' => 'Type',
         'bio' => 'Bio',
+        'country_id' => 'Country',
+        'city_id' => 'City',
+        'address' => 'Address',
         'balance' => 'Balance',
         'favorite_car' => 'Favorite Car',
         'app_locale' => 'App Locale',
@@ -43,6 +46,9 @@ return [
         'avatar' => 'Avatar',
         'type' => 'Type',
         'bio' => 'Bio',
+        'country_id' => 'Country',
+        'city_id' => 'City',
+        'address' => 'Address',
         'balance' => 'Balance',
         'favorite_car' => 'Favorite Car',
         'app_locale' => 'App Locale',
@@ -115,6 +121,7 @@ return [
         'crud_the_name' => 'The Role',
         'id' => '#',
         'name' => 'Name',
+        'name_ar' => 'Name Ar',
         'permissions' => 'Permissions',
     ],
     'Transaction'=>[
