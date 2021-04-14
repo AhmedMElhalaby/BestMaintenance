@@ -52,6 +52,14 @@ class Constant
         'InProgress' => 5,
         'Finished' => 6,
     ];
+    const ORDER_STATUSES_STR = [
+        1 =>'New',
+        2 =>'Accept',
+        3 =>'Rejected',
+        4 =>'Canceled',
+        5 =>'InProgress',
+        6 =>'Finished',
+    ];
     const COMPLETED_ORDER_STATUSES = [self::ORDER_STATUSES['Rejected'],self::ORDER_STATUSES['Canceled'],self::ORDER_STATUSES['Finished']];
     const ORDER_STATUSES_RULES = '1,2,3,4,5,6';
     const USER_SUBSCRIPTION = [

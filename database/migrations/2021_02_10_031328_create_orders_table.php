@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('category_id');
             $table->foreignId('issue_id');
             $table->foreignId('issue_type_id');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(\App\Helpers\Constant::ORDER_STATUSES['New']);
             $table->double('amount')->nullable();
             $table->date('order_date')->nullable();
             $table->time('order_time')->nullable();

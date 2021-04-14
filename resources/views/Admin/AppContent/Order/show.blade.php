@@ -18,21 +18,25 @@
                                         </tr>
                                         <tr>
                                             <th style="border-top: none !important;">{{__('crud.'.$lang.'.freelancer_id')}}</th>
-                                            <td style="border-top: none !important;">{{$Object->freelancer->getName()}}</td>
+                                            <td style="border-top: none !important;">{{$Object->technical->getName()}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.product_id')}}</th>
-                                            <td style="border-top: none !important;">{{$Object->product->getName()}}</td>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.category_id')}}</th>
+                                            <td style="border-top: none !important;">{{($Object->category)?(app()->getLocale()=='ar')?$Object->category->getNameAr():$Object->category->getName():'-'}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.quantity')}}</th>
-                                            <td style="border-top: none !important;">{{$Object->getQuantity()}}</td>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.issue_id')}}</th>
+                                            <td style="border-top: none !important;">{{($Object->issue)?(app()->getLocale()=='ar')?$Object->issue->getNameAr():$Object->issue->getName():'-'}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.price')}}</th>
-                                            <td style="border-top: none !important;">{{$Object->getPrice()}}</td>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.issue_type_id')}}</th>
+                                            <td style="border-top: none !important;">{{($Object->issue_type)?(app()->getLocale()=='ar')?$Object->issue_type->getNameAr():$Object->issue_type->getName():'-'}}</td>
                                         </tr>
-                                    </table>
+                                        <tr>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.status')}}</th>
+                                            <td style="border-top: none !important;">{{\App\Helpers\Constant::ORDER_STATUSES_STR[$Object->getStatus()]}}</td>
+                                        </tr>
+                                      </table>
                                 </div>
                             </div>
                         </div>
@@ -41,37 +45,33 @@
                                 <div class="card-content table-responsive">
                                     <table class="table table-hover">
                                         <tr>
-                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.total')}}</th>
-                                            <td style="border-top: none !important;">{{$Object->getTotal()}}</td>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.order_date')}}</th>
+                                            <td style="border-top: none !important;">{{$Object->getOrderDate()}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.created_at')}}</th>
-                                            <td style="border-top: none !important;">{{\Carbon\Carbon::parse($Object->created_at)->format('Y-m-d')}}</td>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.order_time')}}</th>
+                                            <td style="border-top: none !important;">{{$Object->getOrderTime()}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.status')}}</th>
-                                            <td style="border-top: none !important;">{{__('crud.'.$lang.'.Statuses.'.$Object->getStatus())}}</td>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.note')}}</th>
+                                            <td style="border-top: none !important;">{{$Object->getNote()}}</td>
                                         </tr>
+                                        @if($Object->getStatus() == \App\Helpers\Constant::ORDER_STATUSES['Rejected'])
                                         <tr>
-                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.delivered_date')}}</th>
-                                            <td style="border-top: none !important;">{{$Object->getDeliveredDate()}}</td>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.reject_reason')}}</th>
+                                            <td style="border-top: none !important;">{{$Object->getRejectReason()}}</td>
                                         </tr>
-                                        <tr>
-                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.delivered_time')}}</th>
-                                            <td style="border-top: none !important;">{{$Object->getDeliveredTime()}}</td>
-                                        </tr>
-                                        @if($Object->getRejectReason() != null)
-                                            <tr>
-                                                <th style="border-top: none !important;">{{__('crud.'.$lang.'.reject_reason')}}</th>
-                                                <td style="border-top: none !important;">{{$Object->getRejectReason()}}</td>
-                                            </tr>
                                         @endif
-                                        @if($Object->getCancelReason() != null)
-                                            <tr>
-                                                <th style="border-top: none !important;">{{__('crud.'.$lang.'.cancel_reason')}}</th>
-                                                <td style="border-top: none !important;">{{$Object->getCancelReason()}}</td>
-                                            </tr>
+                                        @if($Object->getStatus() == \App\Helpers\Constant::ORDER_STATUSES['Canceled'])
+                                        <tr>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.cancel_reason')}}</th>
+                                            <td style="border-top: none !important;">{{$Object->getCancelReason()}}</td>
+                                        </tr>
                                         @endif
+                                        <tr>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.amount')}}</th>
+                                            <td style="border-top: none !important;">{{$Object->getAmount()}}</td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
