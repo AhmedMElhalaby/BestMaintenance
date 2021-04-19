@@ -23,10 +23,10 @@ class OrderResource extends JsonResource
         $Objects['Technical'] = new TechnicalResource($this->technical);
         $Objects['amount'] = $this->getAmount();
         $UserBalance = Functions::UserBalance($this->getUserId());
-        if ($UserBalance >= $this->getTotal()) {
+        if ($UserBalance >= $this->getAmount()) {
             $balance = 0;
         }else{
-            $balance = $this->getTotal() - $UserBalance;
+            $balance = $this->getAmount() - $UserBalance;
         }
         $Objects['balance'] = $balance;
         $Objects['order_date'] = Carbon::parse($this->created_at);
