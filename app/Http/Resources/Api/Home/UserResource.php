@@ -18,6 +18,8 @@ class UserResource extends JsonResource
         $Object['avatar'] = asset($this->getAvatar());
         $Object['lat'] = $this->getLat();
         $Object['lng'] = $this->getLng();
+        $Object['address'] = $this->getAddress();
+        $Object['City'] = new CityResource($this->city);
         $Object['rate'] = $this->getRate();
         return $Object;
     }

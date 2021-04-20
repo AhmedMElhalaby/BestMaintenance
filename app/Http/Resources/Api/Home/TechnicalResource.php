@@ -17,6 +17,7 @@ class TechnicalResource extends JsonResource
         $Object['lat'] = $this->getLat();
         $Object['lng'] = $this->getLng();
         $Object['rate'] = $this->getRate();
+        $Object['Categories'] = CategoryResource::collection($this->categories);
         return $Object;
     }
 

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property integer id
+ * @property mixed manager_id
  * @property string name
  * @property string name_ar
  * @property string description
@@ -18,10 +19,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     protected $table = 'categories';
-    protected $fillable = ['name','name_ar','description','description_ar','image','is_active'];
+    protected $fillable = ['manager_id','name','name_ar','description','description_ar','image','is_active'];
 
-    public function issues(){
+    public function issues(): HasMany
+    {
         return $this->hasMany(Issue::class);
+    }
+    public function manager(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
     /**
      * @return int
@@ -37,6 +43,22 @@ class Category extends Model
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getManagerId()
+    {
+        return $this->manager_id;
+    }
+
+    /**
+     * @param mixed $manager_id
+     */
+    public function setManagerId($manager_id): void
+    {
+        $this->manager_id = $manager_id;
     }
 
     /**

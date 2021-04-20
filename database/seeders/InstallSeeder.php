@@ -78,7 +78,7 @@ class InstallSeeder extends Seeder
                     ],
                     'Categories'=>[
                         'name'=>'Main Categories',
-                        'name_ar'=>'التصنيفات الرئيسية',
+                        'name_ar'=>'التصنيفات',
                         'key'=>'categories',
                         'icon'=>'category'
                     ],

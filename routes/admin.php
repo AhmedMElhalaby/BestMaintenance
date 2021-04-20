@@ -278,13 +278,15 @@ Route::group([
             Route::get('/','TechnicalController@index');
             Route::get('/create','TechnicalController@create');
             Route::post('/','TechnicalController@store');
-            Route::get('/{provider}','TechnicalController@show');
-            Route::get('/{customer}/edit','TechnicalController@edit');
-            Route::put('/{customer}','TechnicalController@update');
+            Route::get('/{technical}','TechnicalController@show');
+            Route::get('/{technical}/edit','TechnicalController@edit');
+            Route::put('/{technical}','TechnicalController@update');
             Route::patch('/update/password',  'TechnicalController@updatePassword');
             Route::get('/option/export','TechnicalController@export');
-            Route::get('/{id}/activation','TechnicalController@activation');
-            Route::get('/{provider}/active_mobile_email','TechnicalController@active_mobile_email');
+            Route::get('/{technical}/activation','TechnicalController@activation');
+            Route::get('/{technical}/active_mobile_email','TechnicalController@active_mobile_email');
+            Route::get('/{technical}/edit_times','TechnicalController@edit_times');
+            Route::post('/{technical}/edit_times','TechnicalController@post_edit_times');
         });
         Route::group([
             'prefix'=>'users_subscriptions'

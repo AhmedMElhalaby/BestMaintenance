@@ -4,7 +4,9 @@ namespace App\Models;
 
 use App\Helpers\Functions;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -48,6 +50,23 @@ class User extends Authenticatable
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
+    }
+    public function user_time(): HasOne
+    {
+        return $this->hasOne(UserTime::class);
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class,'users_categories');
+    }
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function hasCategory($id): bool
+    {
+        return (bool)UserCategory::where('user_id', $this->getId())->where('category_id', $id)->first();
     }
     /**
      * @return int

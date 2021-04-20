@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Admin\UserManagement;
 
 use App\Helpers\Constant;
-use App\Helpers\Functions;
 use App\Http\Controllers\Admin\Controller;
 use App\Http\Requests\Admin\UserManagement\User\ActiveEmailMobileRequest;
+use App\Http\Requests\Admin\UserManagement\User\EditTimePostRequest;
+use App\Http\Requests\Admin\UserManagement\User\EditTimeRequest;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\User;
+use App\Models\UserCategory;
 use App\Traits\AhmedPanelTrait;
 
 class TechnicalController extends Controller
@@ -114,6 +116,29 @@ class TechnicalController extends Controller
                 'editable'=>false,
                 'confirmation'=>true
             ],
+            'user_categories'=> [
+                'name'=>'user_categories',
+                'type'=>'multi_checkbox',
+                'custom'=>[
+                    'ListModel'=>[
+                        'Model'=>(new Category())->all(),
+                        'name'=>(session('my_locale') =='ar')?'name_ar':'name',
+                        'id'=>'id',
+                    ],
+                    'RelationModel'=>[
+                        'Model'=>(new UserCategory()),
+                        'ref_id'=>'category_id',
+                        'id'=>'user_id',
+                    ],
+                    'CheckFunc'=>function ($Object ,$id){
+                        if($Object){
+                            return $Object->hasCategory($id);
+                        }
+                        return false;
+                    }
+                ],
+                'is_required'=>false,
+            ],
             'is_active'=> [
                 'name'=>'is_active',
                 'type'=>'active',
@@ -129,12 +154,27 @@ class TechnicalController extends Controller
                     return (is_null($Object->getEmailVerifiedAt())|| is_null($Object->getMobileVerifiedAt()));
                 }
             ],
+            'edit_times'=>[
+                'route'=>'edit_times',
+                'icon'=>'fa-calendar',
+                'lang'=>__('crud.Technical.Links.edit_times',[],session('my_locale')),
+                'condition'=>function ($Object){
+                    return true;
+                }
+            ],
             'active',
+            'edit',
             'show',
             'change_password',
         ]);
     }
     public function active_mobile_email($id,ActiveEmailMobileRequest $request){
+        return $request->preset($this,$id);
+    }
+    public function edit_times($id,EditTimeRequest $request){
+        return $request->preset($this,$id);
+    }
+    public function post_edit_times($id,EditTimePostRequest $request){
         return $request->preset($this,$id);
     }
 }

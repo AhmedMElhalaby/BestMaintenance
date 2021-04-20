@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin\AppData;
 
+use App\Helpers\Constant;
 use App\Http\Controllers\Admin\Controller;
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\User;
 use App\Traits\AhmedPanelTrait;
 
 class CategoryController extends Controller
@@ -21,6 +23,19 @@ class CategoryController extends Controller
             'image'=> [
                 'name'=>'image',
                 'type'=>'image',
+                'is_searchable'=>true,
+                'order'=>true
+            ],
+            'manager_id'=> [
+                'name'=>'manager_id',
+                'type'=>'custom_relation',
+                'relation'=>[
+                    'data'=> User::where('type',Constant::USER_TYPE['Technical'])->get(),
+                    'custom'=>function($Object){
+                        return ($Object)?$Object->getName():'-';
+                    },
+                    'entity'=>'manager'
+                ],
                 'is_searchable'=>true,
                 'order'=>true
             ],
@@ -44,6 +59,18 @@ class CategoryController extends Controller
             ],
         ]);
         $this->setFields([
+            'manager_id'=> [
+                'name'=>'manager_id',
+                'type'=>'custom_relation',
+                'relation'=>[
+                    'data'=> User::where('type',Constant::USER_TYPE['Technical'])->get(),
+                    'custom'=>function($Object){
+                        return ($Object)?$Object->getName():'-';
+                    },
+                    'entity'=>'manager'
+                ],
+                'is_required'=>true
+            ],
             'name'=> [
                 'name'=>'name',
                 'type'=>'text',

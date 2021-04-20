@@ -78,11 +78,13 @@ class StoreRequest extends FormRequest
         $Object->refresh();
         if(isset($MultiCheckboxField)){
             foreach ($MultiCheckboxField as $MField){
-                foreach ($this->{$MField['name']} as $MValue){
-                    $Model = $MField['custom']['RelationModel']['Model'];
-                    $Model->{$MField['custom']['RelationModel']['ref_id']} = $MValue;
-                    $Model->{$MField['custom']['RelationModel']['id']} = $Object->getId();
-                    $Model->save();
+                if ($this->filled($MField['name'])){
+                    foreach ($this->{$MField['name']} as $MValue){
+                        $Model = $MField['custom']['RelationModel']['Model'];
+                        $Model->{$MField['custom']['RelationModel']['ref_id']} = $MValue;
+                        $Model->{$MField['custom']['RelationModel']['id']} = $Object->getId();
+                        $Model->save();
+                    }
                 }
             }
         }
