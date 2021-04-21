@@ -101,6 +101,12 @@ class CustomerController extends Controller
                 ],
                 'is_required'=>true,
             ],
+            'avatar'=> [
+                'name'=>'avatar',
+                'type'=>'image',
+                'is_required'=>false,
+                'is_required_update'=>false
+            ],
             'address'=> [
                 'name'=>'address',
                 'type'=>'text',
