@@ -116,6 +116,12 @@ class TechnicalController extends Controller
                 'editable'=>false,
                 'confirmation'=>true
             ],
+            'avatar'=> [
+                'name'=>'avatar',
+                'type'=>'image',
+                'is_required'=>true,
+                'is_required_update'=>false
+            ],
             'user_categories'=> [
                 'name'=>'user_categories',
                 'type'=>'multi_checkbox',
