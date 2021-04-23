@@ -27,6 +27,8 @@ use Illuminate\Support\Facades\Hash;
  * @property mixed device_type
  * @property mixed lat
  * @property mixed lng
+ * @property mixed nationality
+ * @property mixed religion
  * @property mixed address
  * @property mixed rate
  * @property mixed email_verified_at
@@ -39,7 +41,7 @@ class User extends Authenticatable
 {
     use Notifiable,HasApiTokens;
 
-    protected $fillable = ['name','email','mobile','type','country_id','city_id','avatar','device_token','device_type','address','rate','lat','lng','email_verified_at','mobile_verified_at','app_locale','is_active',];
+    protected $fillable = ['name','email','mobile','type','country_id','city_id','avatar','device_token','device_type','address','rate','lat','lng','nationality','religion','email_verified_at','mobile_verified_at','app_locale','is_active',];
 
     protected $hidden = ['password'];
 
@@ -396,6 +398,38 @@ class User extends Authenticatable
     public function setAddress($address): void
     {
         $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNationality()
+    {
+        return $this->nationality;
+    }
+
+    /**
+     * @param mixed $nationality
+     */
+    public function setNationality($nationality): void
+    {
+        $this->nationality = $nationality;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReligion()
+    {
+        return $this->religion;
+    }
+
+    /**
+     * @param mixed $religion
+     */
+    public function setReligion($religion): void
+    {
+        $this->religion = $religion;
     }
 
 }

@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->string('device_type')->nullable();
             $table->string('lat')->nullable();
             $table->string('lng')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('religion')->nullable();
             $table->double('rate')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('mobile_verified_at')->nullable();

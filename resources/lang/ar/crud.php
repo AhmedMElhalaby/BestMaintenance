@@ -25,6 +25,8 @@ return [
         'type' => 'نوع البروفايل',
         'bio' => 'نبذة',
         'balance' => 'الرصيد',
+        'nationality' => 'الجنسية',
+        'religion' => 'الديانة',
         'country_id' => 'الدولة',
         'city_id' => 'المدينة',
         'address' => 'العنوان',

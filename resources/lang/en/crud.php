@@ -27,6 +27,8 @@ return [
         'city_id' => 'City',
         'address' => 'Address',
         'balance' => 'Balance',
+        'nationality' => 'Nationality',
+        'religion' => 'Religion',
         'favorite_car' => 'Favorite Car',
         'app_locale' => 'App Locale',
         'is_active' => 'Status',

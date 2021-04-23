@@ -109,6 +109,16 @@ class TechnicalController extends Controller
                 'type'=>'text',
                 'is_required'=>true,
             ],
+            'nationality'=> [
+                'name'=>'nationality',
+                'type'=>'text',
+                'is_required'=>true,
+            ],
+            'religion'=> [
+                'name'=>'religion',
+                'type'=>'text',
+                'is_required'=>true,
+            ],
             'password'=> [
                 'name'=>'password',
                 'type'=>'password',
