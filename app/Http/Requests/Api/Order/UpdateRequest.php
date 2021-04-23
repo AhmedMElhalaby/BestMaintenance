@@ -42,7 +42,7 @@ class UpdateRequest extends ApiRequest
                 break;
             }
             case Constant::ORDER_STATUSES['InProgress']:{
-                if ($Object->getStatus() !=Constant::ORDER_STATUSES['Payed']) {
+                if ($Object->getStatus() !=Constant::ORDER_STATUSES['Accept']) {
                     return $this->failJsonResponse([__('messages.wrong_sequence')]);
                 }
                 $Object->setStatus(Constant::ORDER_STATUSES['InProgress']);
