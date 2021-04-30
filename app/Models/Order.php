@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property mixed issue_id
  * @property mixed issue_type_id
  * @property mixed status
+ * @property mixed address
  * @property mixed amount
  * @property mixed order_date
  * @property mixed order_time
@@ -26,7 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Order extends Model
 {
     protected $table = 'orders';
-    protected $fillable = ['user_id','technical_id','category_id','issue_id','issue_type_id','status','amount','order_date','order_time','note','reject_reason','cancel_reason',];
+    protected $fillable = ['user_id','technical_id','category_id','issue_id','issue_type_id','address','status','amount','order_date','order_time','note','reject_reason','cancel_reason',];
 
     public function user(): BelongsTo
     {
@@ -174,6 +175,22 @@ class Order extends Model
     public function setStatus($status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address): void
+    {
+        $this->address = $address;
     }
 
     /**

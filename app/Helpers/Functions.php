@@ -8,9 +8,11 @@ use App\Models\Notification;
 use App\Models\OrderStatus;
 use App\Models\PasswordReset;
 use App\Models\Transaction;
+use App\Models\UserTime;
 use App\Models\VerifyAccounts;
 use App\Notifications\VerifyAccount;
 use App\Traits\ResponseTrait;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
@@ -467,5 +469,76 @@ class Functions
             ];
         }
 
+    }
+    public static function CheckEmployeeDateTime($technical_id,$date,$time){
+        $UserTime = UserTime::where('user_id',$technical_id)->first();
+        if ($UserTime){
+            $day = Carbon::parse($date)->dayName;
+            $time = Carbon::createFromTimeString($time);
+            if ($day == 'Friday'){
+                if ($UserTime->getFriday()){
+                    $from = Carbon::createFromTimeString($UserTime->getFridayStart());
+                    $to = Carbon::createFromTimeString($UserTime->getFridayEnd());
+                    if ($time->between($from,$to)){
+                        return true;
+                    }
+                }
+            }
+            elseif ($day == 'Thursday'){
+                if ($UserTime->getThursday()){
+                    $from = Carbon::createFromTimeString($UserTime->getThursdayStart());
+                    $to = Carbon::createFromTimeString($UserTime->getThursdayEnd());
+                    if ($time->between($from,$to)){
+                        return true;
+                    }
+                }
+            }
+            elseif ($day == 'Wednesday'){
+                if ($UserTime->getWednesday()){
+                    $from = Carbon::createFromTimeString($UserTime->getWednesdayStart());
+                    $to = Carbon::createFromTimeString($UserTime->getWednesdayEnd());
+                    if ($time->between($from,$to)){
+                        return true;
+                    }
+                }
+            }
+            elseif ($day == 'Tuesday'){
+                if ($UserTime->getTuesday()){
+                    $from = Carbon::createFromTimeString($UserTime->getTuesdayStart());
+                    $to = Carbon::createFromTimeString($UserTime->getTuesdayEnd());
+                    if ($time->between($from,$to)){
+                        return true;
+                    }
+                }
+            }
+            elseif ($day == 'Monday'){
+                if ($UserTime->getMonday()){
+                    $from = Carbon::createFromTimeString($UserTime->getMondayStart());
+                    $to = Carbon::createFromTimeString($UserTime->getMondayEnd());
+                    if ($time->between($from,$to)){
+                        return true;
+                    }
+                }
+            }
+            elseif ($day == 'Sunday'){
+                if ($UserTime->getSunday()){
+                    $from = Carbon::createFromTimeString($UserTime->getSundayStart());
+                    $to = Carbon::createFromTimeString($UserTime->getSundayEnd());
+                    if ($time->between($from,$to)){
+                        return true;
+                    }
+                }
+            }
+            elseif ($day == 'Saturday'){
+                if ($UserTime->getSaturday()){
+                    $from = Carbon::createFromTimeString($UserTime->getSaturdayStart());
+                    $to = Carbon::createFromTimeString($UserTime->getSaturdayEnd());
+                    if ($time->between($from,$to)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\AppContent;
 
 use App\Helpers\Constant;
 use App\Http\Controllers\Admin\Controller;
+use App\Http\Requests\Admin\AppContent\Order\StoreRequest;
 use App\Models\Category;
 use App\Models\Issue;
 use App\Models\IssueType;
@@ -22,6 +23,7 @@ class OrderController extends Controller
         $this->setTable('orders');
         $this->setLang('Order');
         $this->setViewShow('Admin.AppContent.Order.show');
+        $this->setViewCreate('Admin.AppContent.Order.create');
         $this->setColumns([
             'user_id'=> [
                 'name'=>'user_id',
@@ -112,7 +114,7 @@ class OrderController extends Controller
                 'name'=>'category_id',
                 'type'=>'custom_relation',
                 'relation'=>[
-                    'data'=> Category::all(),
+                    'data'=> [],
                     'custom'=>function($Object){
                         return ($Object)?session('my_locale') =='ar'?$Object->getNameAr():$Object->getName():'-';
                     },
@@ -124,7 +126,7 @@ class OrderController extends Controller
                 'name'=>'issue_id',
                 'type'=>'custom_relation',
                 'relation'=>[
-                    'data'=> Issue::all(),
+                    'data'=> [],
                     'custom'=>function($Object){
                         return ($Object)?session('my_locale') =='ar'?$Object->getNameAr():$Object->getName():'-';
                     },
@@ -136,7 +138,7 @@ class OrderController extends Controller
                 'name'=>'issue_type_id',
                 'type'=>'custom_relation',
                 'relation'=>[
-                    'data'=> IssueType::all(),
+                    'data'=> [],
                     'custom'=>function($Object){
                         return ($Object)?session('my_locale') =='ar'?$Object->getNameAr():$Object->getName():'-';
                     },
@@ -159,15 +161,29 @@ class OrderController extends Controller
                 'type'=>'time',
                 'is_required'=>true,
             ],
+            'address'=>[
+                'name'=>'address',
+                'type'=>'text',
+                'is_required'=>true,
+            ],
             'note'=>[
                 'name'=>'note',
                 'type'=>'textarea',
+                'is_required'=>false,
+            ],
+            'images'=>[
+                'name'=>'images',
+                'type'=>'images',
                 'is_required'=>false,
             ],
         ]);
         $this->SetLinks([
             'show',
         ]);
+    }
+    public function store(StoreRequest $request)
+    {
+        return $request->preset($this);
     }
 
 }

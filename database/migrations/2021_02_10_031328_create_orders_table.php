@@ -24,6 +24,7 @@ class CreateOrdersTable extends Migration
             $table->double('amount')->nullable();
             $table->date('order_date')->nullable();
             $table->time('order_time')->nullable();
+            $table->string('address')->nullable();
             $table->string('note')->nullable();
             $table->string('reject_reason')->nullable();
             $table->string('cancel_reason')->nullable();

@@ -35,6 +35,7 @@ class OrderResource extends JsonResource
         $Objects['reject_reason'] = $this->getRejectReason();
         $Objects['cancel_reason'] = $this->getCancelReason();
         $Objects['rate'] = $this->reviews()->avg('rate')??'0';
+        $Objects['address'] = $this->getAddress();
         $Objects['status'] = $this->getStatus();
         $Objects['note'] = $this->getNote();
         $Objects['status_str'] = __('crud.Order.Statuses.'.$this->getStatus());

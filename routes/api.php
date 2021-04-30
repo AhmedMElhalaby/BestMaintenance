@@ -73,6 +73,9 @@ Route::group([
     Route::get('faqs','HomeController@faqs');
     Route::get('advertisements','HomeController@advertisements');
     Route::get('categories','HomeController@categories');
+    Route::get('technical_categories','HomeController@technical_categories');
+    Route::get('category_issues','HomeController@category_issues');
+    Route::get('issue_issue_types','HomeController@issue_issue_types');
 });
 
 Route::group([

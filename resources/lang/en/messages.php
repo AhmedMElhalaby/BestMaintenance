@@ -40,6 +40,7 @@ return [
     'dont_have_credit'=>'Dont have enough credit!',
     'credit_less_than_last_bid'=>'Credit Less Than Last Bid',
     'bid_less_than_required'=>'Your Bid Less Than Required !',
+    'order_time_not_in_employee_time'=>'Order Time is not at Employee Time !',
     'you_cannot_do_it_at_this_time'=>'You can not do this action at this time !',
     'payment_verified'=>'Payment Verified !',
     'payment_not_verified'=>'Payment Not Verified !',

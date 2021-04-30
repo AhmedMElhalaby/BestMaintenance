@@ -30,10 +30,6 @@
                                             <td style="border-top: none !important;">{{\Carbon\Carbon::parse($Object->created_at)->format('Y-m-d')}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.balance')}}</th>
-                                            <td style="border-top: none !important;">{{\App\Helpers\Functions::UserBalance($Object->getId())}}</td>
-                                        </tr>
-                                        <tr>
                                             <th style="border-top: none !important;">{{__('crud.'.$lang.'.is_active')}}</th>
                                             <td style="border-top: none !important;">
                                                 <span class="label label-{{($Object->isIsActive())?'success':'danger'}}">{{($Object->isIsActive())?__('admin.activation.active'):__('admin.activation.in_active')}}</span>
@@ -41,62 +37,8 @@
                                         </tr>
                                         <tr>
                                             <th style="border-top: none !important;">{{__('crud.'.$lang.'.orders_count')}}</th>
-                                            <td style="border-top: none !important;"><a href="{{url('app_content/orders?freelancer_id='.$Object->getId())}}">{{\App\Models\Order::where('freelancer_id',$Object->getId())->count()}}</a></td>
+                                            <td style="border-top: none !important;"><a href="{{url('app_content/orders?technical_id='.$Object->getId())}}">{{\App\Models\Order::where('technical_id',$Object->getId())->count()}}</a></td>
                                         </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card">
-                                <div class="card-header text-center" style="padding: 5px" data-background-color="{{ config('app.color') }}">
-                                    <h4 class="title"> {{__('crud.Transaction.crud_names')}}</h4>
-                                </div>
-                                <div class="card-content table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th style="border-top: none !important;">{{__('crud.Transaction.type')}}</th>
-                                            <th style="border-top: none !important;">{{__('crud.Transaction.value')}}</th>
-                                            <th style="border-top: none !important;">{{__('crud.Transaction.status')}}</th>
-                                            <th style="border-top: none !important;">{{__('crud.Transaction.created_at')}}</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach(\App\Models\Transaction::where('user_id',$Object->getId())->get() as $Transaction)
-                                                <tr>
-                                                    <td>{{__('crud.Transaction.Types.'.$Transaction->getType())}}</td>
-                                                    <td>{{$Transaction->getValue()}}</td>
-                                                    <td>{{__('crud.Transaction.Statuses.'.$Transaction->getStatus())}}</td>
-                                                    <td>{{\Carbon\Carbon::parse($Transaction->created_at)->format('Y-m-d')}}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header text-center" style="padding: 5px" data-background-color="{{ config('app.color') }}">
-                                    <h4 class="title"> {{__('crud.Portfolio.crud_names')}}</h4>
-                                </div>
-                                <div class="card-content table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th style="border-top: none !important;">{{__('crud.Portfolio.media')}}</th>
-                                            <th style="border-top: none !important;">{{__('crud.Portfolio.description')}}</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach(\App\Models\Portfolio::where('user_id',$Object->getId())->get() as $Portfolio)
-                                            <tr>
-                                                <td><a href="{{asset($Portfolio->getMedia())}}" download><i class="fa fa-download"></i></a></td>
-                                                <td>{{$Portfolio->getDescription()}}</td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
                                     </table>
                                 </div>
                             </div>

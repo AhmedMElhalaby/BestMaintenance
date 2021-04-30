@@ -67,4 +67,7 @@ class Constant
         'Approved'=>2,
         'Rejected'=>3,
     ];
+    const MEDIA_TYPE = [
+        'OrderImages'=>1,
+    ];
 }
