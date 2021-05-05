@@ -35,6 +35,10 @@ return [
         'created_at' => 'Created At',
         'user_categories' => 'Technical Categories',
         'orders_count' => 'Orders Count',
+        'Religious'=>[
+            ''.Constant::TechnicalReligion['Muslim']=>'Muslim',
+            ''.Constant::TechnicalReligion['Non-Muslim']=>'Non-Muslim',
+        ],
         'Links'=>[
             'active_mobile_email'=>'Active Mobile And Email',
             'edit_times'=>'Edit Employee Times'

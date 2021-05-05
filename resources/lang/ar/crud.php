@@ -36,6 +36,10 @@ return [
         'created_at' => 'تاريخ الإنشاء',
         'user_categories' => 'تصنيفات التقني',
         'orders_count' => 'عدد الطلبات',
+        'Religious'=>[
+            ''.Constant::TechnicalReligion['Muslim']=>'مسلم',
+            ''.Constant::TechnicalReligion['Non-Muslim']=>'غير مسلم',
+        ],
         'Links'=>[
             'active_mobile_email'=>'تفعيل الايميل والجوال',
             'edit_times'=>'تعديل أوقات دوام الموظف'

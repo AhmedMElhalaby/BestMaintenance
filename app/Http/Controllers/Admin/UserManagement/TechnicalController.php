@@ -116,7 +116,11 @@ class TechnicalController extends Controller
             ],
             'religion'=> [
                 'name'=>'religion',
-                'type'=>'text',
+                'type'=>'select',
+                'data'=>[
+                    Constant::TechnicalReligion['Muslim'] =>__('crud.Technical.Religious.'.Constant::TechnicalReligion['Muslim'],[],session('my_locale')),
+                    Constant::TechnicalReligion['Non-Muslim'] =>__('crud.Technical.Religious.'.Constant::TechnicalReligion['Non-Muslim'],[],session('my_locale')),
+                ],
                 'is_required'=>true,
             ],
             'password'=> [

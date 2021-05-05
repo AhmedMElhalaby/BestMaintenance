@@ -70,4 +70,8 @@ class Constant
     const MEDIA_TYPE = [
         'OrderImages'=>1,
     ];
+    const TechnicalReligion = [
+        'Muslim'=>1,
+        'Non-Muslim'=>2,
+    ];
 }
