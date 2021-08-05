@@ -17,7 +17,7 @@
                                             <td style="border-top: none !important;">{{$Object->user->getName()}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.freelancer_id')}}</th>
+                                            <th style="border-top: none !important;">{{__('crud.'.$lang.'.technical_id')}}</th>
                                             <td style="border-top: none !important;">{{($Object->technical)?$Object->technical->getName():'-'}}</td>
                                         </tr>
                                         <tr>

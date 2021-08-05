@@ -27,6 +27,12 @@ class PermissionController extends Controller
                 'is_searchable'=>true,
                 'order'=>true
             ],
+            'name_ar'=> [
+                'name'=>'name_ar',
+                'type'=>'text',
+                'is_searchable'=>true,
+                'order'=>true
+            ],
         ]);
         $this->setFields([
             'name'=> [
@@ -34,9 +40,14 @@ class PermissionController extends Controller
                 'type'=>'text',
                 'is_required'=>true
             ],
+            'name_ar'=> [
+                'name'=>'name_ar',
+                'type'=>'text',
+                'is_required'=>true
+            ],
         ]);
         $this->SetLinks([
-//            'edit',
+            'edit',
 //            'delete',
         ]);
     }

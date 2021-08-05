@@ -74,11 +74,13 @@ class TechnicalController extends Controller
                 'name'=>'mobile',
                 'type'=>'text',
                 'is_required'=>true,
+                'is_unique'=>true
             ],
             'email'=> [
                 'name'=>'email',
                 'type'=>'email',
                 'is_required'=>true,
+                'is_unique'=>true
             ],
             'country_id'=> [
                 'name'=>'country_id',
@@ -146,7 +148,7 @@ class TechnicalController extends Controller
                         'id'=>'id',
                     ],
                     'RelationModel'=>[
-                        'Model'=>(new UserCategory()),
+                        'Model'=>UserCategory::class,
                         'ref_id'=>'category_id',
                         'id'=>'user_id',
                     ],

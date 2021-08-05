@@ -68,15 +68,15 @@ class UpdateRequest extends FormRequest
         $Object->save();
         if(isset($MultiCheckboxField)){
             foreach ($MultiCheckboxField as $MField){
-                $Model = $MField['custom']['RelationModel']['Model'];
+                $Model = new $MField['custom']['RelationModel']['Model'];
                 $Model->where($MField['custom']['RelationModel']['id'],$Object->getId())->delete();
                 if ($this->filled($MField['name'])) {
                     if (is_array($this->{$MField['name']})) {
                         foreach ($this->{$MField['name']} as $MValue) {
-                            $Model = $MField['custom']['RelationModel']['Model'];
-                            $Model->{$MField['custom']['RelationModel']['ref_id']} = $MValue;
-                            $Model->{$MField['custom']['RelationModel']['id']} = $Object->getId();
-                            $Model->save();
+                            $MultiModel = new $MField['custom']['RelationModel']['Model'];
+                            $MultiModel->{$MField['custom']['RelationModel']['ref_id']} = $MValue;
+                            $MultiModel->{$MField['custom']['RelationModel']['id']} = $Object->getId();
+                            $MultiModel->save();
                         }
                     }
                 }

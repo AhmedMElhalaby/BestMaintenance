@@ -74,4 +74,8 @@ class Constant
         'Muslim'=>1,
         'Non-Muslim'=>2,
     ];
+    const SENDER_TYPE = [
+        'User'=>1,
+        'Admin'=>2,
+    ];
 }

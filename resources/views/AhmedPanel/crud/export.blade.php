@@ -88,7 +88,7 @@
             </td>
             <td width="50%" class="text @if(app()->getLocale() == 'ar') text-left @else text-right @endif" align="left">
                 <div class="text @if(app()->getLocale() == 'ar') text-left @else text-right @endif">
-                    <img class="logo" src="{{asset('public/logo.png')}}" alt=" Image" style="height:75px">
+                    <img class="logo" src="{{asset('logo.png')}}" alt=" Image" style="height:75px">
                 </div>
 
             </td>

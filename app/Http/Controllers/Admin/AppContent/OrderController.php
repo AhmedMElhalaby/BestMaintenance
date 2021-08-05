@@ -42,7 +42,7 @@ class OrderController extends Controller
                 'name'=>'technical_id',
                 'type'=>'custom_relation',
                 'relation'=>[
-                    'data'=> User::where('type',Constant::USER_TYPE['Technical'])->get(),
+                    'data'=> User::where('type',Constant::USER_TYPE['Technical'])->where('is_active',true)->get(),
                     'custom'=>function($Object){
                         return ($Object)?$Object->getName():'-';
                     },
@@ -75,6 +75,12 @@ class OrderController extends Controller
                     Constant::ORDER_STATUSES['InProgress'] =>__('crud.Order.Statuses.'.Constant::ORDER_STATUSES['InProgress'],[],session('my_locale')),
                     Constant::ORDER_STATUSES['Finished'] =>__('crud.Order.Statuses.'.Constant::ORDER_STATUSES['Finished'],[],session('my_locale')),
                 ],
+                'is_searchable'=>true,
+                'order'=>true
+            ],
+            'order_date'=> [
+                'name'=>'order_date',
+                'type'=>'text',
                 'is_searchable'=>true,
                 'order'=>true
             ],

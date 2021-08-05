@@ -59,7 +59,7 @@ class Admin extends Authenticatable
      */
     public function can($ability, $arguments = [])
     {
-        $Permission = Permission::where('name',$ability)->first();
+        $Permission = Permission::where('key',$ability)->first();
         if(!$Permission)
             return true;
         return $this->hasPermission($Permission->getId());

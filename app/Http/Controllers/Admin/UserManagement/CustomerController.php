@@ -129,6 +129,7 @@ class CustomerController extends Controller
             ],
             'active',
             'show',
+            'edit',
             'change_password',
         ]);
     }

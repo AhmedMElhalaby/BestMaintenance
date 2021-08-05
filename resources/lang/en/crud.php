@@ -147,6 +147,8 @@ return [
         'crud_the_name' => 'The Permission',
         'id' => '#',
         'name' => 'Name',
+        'name_ar' => 'Name Ar',
+
     ],
     'Role'=>[
         'crud_names' => 'Roles',

@@ -148,6 +148,7 @@ return [
         'crud_the_name' => 'الصلاحية',
         'id' => '#',
         'name' => 'الاسم',
+        'name_ar' => 'الاسم عربي',
     ],
     'Role'=>[
         'crud_names' => 'الأدوار',
