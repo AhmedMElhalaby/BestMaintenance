@@ -98,12 +98,14 @@ class StoreRequest extends FormRequest
         }
         if(isset($ImagesField)){
             foreach ($ImagesField as $IField){
-                foreach ($this->file($IField['name']) as $IValue){
-                    $Model = new Media();
-                    $Model->setFile($IValue);
-                    $Model->setMediaType($IField['media_type']);
-                    $Model->setRefId($Object->id);
-                    $Model->save();
+                if ($this->hasFile($IField['name'])){
+                    foreach ($this->file($IField['name']) as $IValue){
+                        $Model = new Media();
+                        $Model->setFile($IValue);
+                        $Model->setMediaType($IField['media_type']);
+                        $Model->setRefId($Object->id);
+                        $Model->save();
+                    }
                 }
             }
         }

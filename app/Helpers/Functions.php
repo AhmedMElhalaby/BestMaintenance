@@ -473,9 +473,10 @@ class Functions
     public static function CheckEmployeeDateTime($technical_id,$date,$time){
         $UserTime = UserTime::where('user_id',$technical_id)->first();
         if ($UserTime){
-            $day = Carbon::parse($date)->dayName;
+
+            $day = Carbon::parse($date)->subDays(6)->dayName;
             $time = Carbon::createFromTimeString($time);
-            if ($day == 'Friday'){
+            if ($day == 'Friday' || $day == 'الجمعة'){
                 if ($UserTime->getFriday()){
                     $from = Carbon::createFromTimeString($UserTime->getFridayStart());
                     $to = Carbon::createFromTimeString($UserTime->getFridayEnd());
@@ -484,7 +485,7 @@ class Functions
                     }
                 }
             }
-            elseif ($day == 'Thursday'){
+            elseif ($day == 'Thursday' || $day == 'الخميس'){
                 if ($UserTime->getThursday()){
                     $from = Carbon::createFromTimeString($UserTime->getThursdayStart());
                     $to = Carbon::createFromTimeString($UserTime->getThursdayEnd());
@@ -493,7 +494,7 @@ class Functions
                     }
                 }
             }
-            elseif ($day == 'Wednesday'){
+            elseif ($day == 'Wednesday' || $day == 'الأربعاء'){
                 if ($UserTime->getWednesday()){
                     $from = Carbon::createFromTimeString($UserTime->getWednesdayStart());
                     $to = Carbon::createFromTimeString($UserTime->getWednesdayEnd());
@@ -502,7 +503,7 @@ class Functions
                     }
                 }
             }
-            elseif ($day == 'Tuesday'){
+            elseif ($day == 'Tuesday' || $day == 'الثلاثاء'){
                 if ($UserTime->getTuesday()){
                     $from = Carbon::createFromTimeString($UserTime->getTuesdayStart());
                     $to = Carbon::createFromTimeString($UserTime->getTuesdayEnd());
@@ -511,7 +512,7 @@ class Functions
                     }
                 }
             }
-            elseif ($day == 'Monday'){
+            elseif ($day == 'Monday' || $day == 'الاثنين'){
                 if ($UserTime->getMonday()){
                     $from = Carbon::createFromTimeString($UserTime->getMondayStart());
                     $to = Carbon::createFromTimeString($UserTime->getMondayEnd());
@@ -520,7 +521,7 @@ class Functions
                     }
                 }
             }
-            elseif ($day == 'Sunday'){
+            elseif ($day == 'Sunday' || $day == 'الأحد'){
                 if ($UserTime->getSunday()){
                     $from = Carbon::createFromTimeString($UserTime->getSundayStart());
                     $to = Carbon::createFromTimeString($UserTime->getSundayEnd());
@@ -529,7 +530,7 @@ class Functions
                     }
                 }
             }
-            elseif ($day == 'Saturday'){
+            elseif ($day == 'Saturday' || $day == 'السبت'){
                 if ($UserTime->getSaturday()){
                     $from = Carbon::createFromTimeString($UserTime->getSaturdayStart());
                     $to = Carbon::createFromTimeString($UserTime->getSaturdayEnd());

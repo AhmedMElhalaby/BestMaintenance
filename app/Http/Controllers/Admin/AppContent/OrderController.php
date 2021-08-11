@@ -180,6 +180,7 @@ class OrderController extends Controller
             'images'=>[
                 'name'=>'images',
                 'type'=>'images',
+                'media_type'=>Constant::MEDIA_TYPE['OrderImages'],
                 'is_required'=>false,
             ],
         ]);
