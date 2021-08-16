@@ -474,7 +474,7 @@ class Functions
         $UserTime = UserTime::where('user_id',$technical_id)->first();
         if ($UserTime){
 
-            $day = Carbon::parse($date)->subDays(6)->dayName;
+            $day = Carbon::parse($date)->dayName;
             $time = Carbon::createFromTimeString($time);
             if ($day == 'Friday' || $day == 'الجمعة'){
                 if ($UserTime->getFriday()){

@@ -109,43 +109,6 @@ class StoreRequest extends FormRequest
                 }
             }
         }
-        if($crud->getLang() == 'Admin'){
-            if($this->filled('roles')) {
-                foreach ($this->roles as $role_id) {
-                    $RolePermission = new ModelRole();
-                    $RolePermission->setModelId($Object->getId());
-                    $RolePermission->setRoleId($role_id);
-                    $RolePermission->save();
-                    foreach (RolePermission::where('role_id', $role_id)->get() as $Permission) {
-                        $RolePermission = new ModelPermission();
-                        $RolePermission->setModelId($Object->getId());
-                        $RolePermission->setPermissionId($Permission->getPermissionId());
-                        $RolePermission->save();
-                    }
-                }
-            }
-        }
-        if($crud->getLang() == 'Admin'){
-            if($this->filled('permissions'))
-            {
-                if ($crud->getLang() == 'Admin'){
-                    foreach ($this->permissions as $permission_id){
-                        $RolePermission = new ModelPermission();
-                        $RolePermission->setModelId($Object->getId());
-                        $RolePermission->setPermissionId($permission_id);
-                        $RolePermission->save();
-                    }
-                }
-                if ($crud->getLang() == 'Role'){
-                    foreach ($this->permissions as $permission_id){
-                        $RolePermission = new RolePermission();
-                        $RolePermission->setRoleId($Object->getId());
-                        $RolePermission->setPermissionId($permission_id);
-                        $RolePermission->save();
-                    }
-                }
-            }
-        }
         return redirect($crud->getRedirect())->with('status', __('admin.messages.saved_successfully'));
     }
 }
